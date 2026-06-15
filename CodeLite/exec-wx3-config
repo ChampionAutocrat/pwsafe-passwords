@@ -1,0 +1,16 @@
+#!/bin/sh
+
+ORIG_ARGS="$@"
+
+if [ -z "$WX3_CONFIG_DEBUG" ]; then WX3_CONFIG_DEBUG=$(which wx-config); fi
+if [ -z "$WX3_CONFIG_RELEASE" ]; then WX3_CONFIG_RELEASE=$(which wx-config); fi
+
+while [ -n "$1" ]
+do
+	case "$1" in
+		--debug=yes|--debug=true) exec $WX3_CONFIG_DEBUG $ORIG_ARGS;;
+		--debug=no|--debug=false) exec $WX3_CONFIG_RELEASE $ORIG_ARGS;;
+		*) shift;;
+    esac
+done
+
