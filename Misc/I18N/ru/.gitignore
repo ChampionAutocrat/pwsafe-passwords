@@ -1,0 +1,5 @@
+*.bak
+project_stats.txt
+source/
+tm/
+last_entry.properties
